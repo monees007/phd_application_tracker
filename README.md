@@ -1,5 +1,5 @@
 
-<h1 align="center">PhD Tracker</h1>
+<h1 align="center">PhD Application Tracker</h1>
 
 <p align="center">
   Track PhD and research position applications — deadlines, statuses and
