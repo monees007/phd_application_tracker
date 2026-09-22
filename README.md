@@ -7,12 +7,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/YOUR-USERNAME/phd-tracker/releases/latest/download/phd-tracker.apk">
+  <a href="https://github.com/monees007/phd_application_tracker/releases/download/v1.0.0/app-arm64-v8a-release.apk">
     <img alt="Download the Android app"
          src="https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white" />
   </a>
   &nbsp;
-  <a href="https://github.com/YOUR-USERNAME/phd-tracker/releases/latest/download/phd-tracker-extension.zip">
+  <a href="https://github.com/monees007/phd_application_tracker/releases/download/v1.0.0/chrome_extension.crx">
     <img alt="Download the Chrome extension"
          src="https://img.shields.io/badge/Download-Chrome%20Extension-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" />
   </a>
