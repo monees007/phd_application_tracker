@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- If you already have a strings.xml, merge this string into it instead. -->
+<resources>
+    <string name="widget_description">Your next PhD application deadlines</string>
+</resources>

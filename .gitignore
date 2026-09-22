@@ -1,0 +1,12 @@
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+android/local.properties
+android/key.properties
+android/app/google-services.json
+**/*.keystore
+**/*.jks
+functions/node_modules/

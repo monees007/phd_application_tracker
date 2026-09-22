@@ -1,0 +1,47 @@
+name: phd_tracker
+description: "Tracker for PhD / research position applications: deadlines, status and reminders."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # --- Firebase backend ---
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  cloud_firestore: ^5.4.4
+
+  # --- State + formatting ---
+  provider: ^6.1.2
+  intl: ^0.19.0
+  http: ^1.2.2
+  file_picker: ^8.1.7
+
+  # --- Notifications (local, exact-time) ---
+  # NOTE: the code targets the v18 API of flutter_local_notifications,
+  # which REMOVED `uiLocalNotificationDateInterpretation` from zonedSchedule.
+  # If you downgrade to ^17.x you must add that argument back.
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.9.4
+  # v3 returns a String from getLocalTimezone(); v4 returns an object.
+  flutter_timezone: ^3.0.1
+
+  # --- Misc ---
+  url_launcher: ^6.3.1
+  shared_preferences: ^2.3.2
+  csv: ^6.0.0
+  share_plus: ^10.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/seed/positions.json

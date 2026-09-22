@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Everything a user owns lives under users/{uid}. Nobody else can touch
+    // it, and there is no collection-group read path that could leak across
+    // users.
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+      match /positions/{positionId} {
+        allow read, delete: if request.auth != null && request.auth.uid == uid;
+
+        allow create, update: if request.auth != null
+          && request.auth.uid == uid
+          && isValidPosition(request.resource.data);
+      }
+    }
+
+    function isValidPosition(d) {
+      return d.keys().hasAll(['university', 'status'])
+        && d.university is string
+        && d.university.size() > 0
+        && d.university.size() <= 200
+        && d.status in ['notApplied', 'applied', 'interview',
+                        'accepted', 'rejected', 'withdrawn']
+        && (!('programme' in d) || (d.programme is string && d.programme.size() <= 500))
+        // Raised from 5000: notes now archive the full advert text so an
+        // entry survives the source page being taken down. A Firestore
+        // document is capped at 1 MiB, so 40k characters is well inside it.
+        && (!('notes' in d) || (d.notes is string && d.notes.size() <= 40000))
+        && (!('link' in d) || (d.link is string && d.link.size() <= 2000))
+        && (!('tags' in d) || (d.tags is list && d.tags.size() <= 20))
+        && (!('history' in d) || (d.history is list && d.history.size() <= 50));
+    }
+
+    // Default deny for anything not matched above.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "indexes": [
+    {
+      "//": "Only needed if you deploy the optional Cloud Function. The app itself sorts client-side and needs no composite index.",
+      "collectionGroup": "positions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "archived", "order": "ASCENDING" },
+        { "fieldPath": "deadline", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

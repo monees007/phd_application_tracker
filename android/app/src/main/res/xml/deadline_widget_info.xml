@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Android floors updatePeriodMillis at 30 minutes, and the 6 hours below only
+    governs the "days left" numbers ticking over on their own. The update path
+    that matters is the app pushing a snapshot whenever the position list
+    changes.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="250dp"
+    android:minHeight="180dp"
+    android:targetCellWidth="4"
+    android:targetCellHeight="3"
+    android:updatePeriodMillis="21600000"
+    android:initialLayout="@layout/widget_deadlines"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:description="@string/widget_description" />
