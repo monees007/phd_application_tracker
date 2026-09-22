@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>PhD Tracker — settings</title>
+  <style>
+    :root { color-scheme: light dark; --fg: #1c1b2e; --muted: #666; --line: #d8d8e4; --accent: #4c5fd5; }
+    @media (prefers-color-scheme: dark) {
+      :root { --fg: #eceaf4; --muted: #a09fb0; --line: #34334a; --accent: #b9c1ff; }
+    }
+    body { font: 14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+           max-width: 560px; margin: 40px auto; padding: 0 20px; color: var(--fg); }
+    h1 { font-size: 20px; margin-bottom: 4px; }
+    h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em;
+         color: var(--accent); margin: 28px 0 10px; }
+    p.hint { color: var(--muted); font-size: 12.5px; margin: 4px 0 14px; }
+    label { display: block; font-size: 12.5px; margin: 12px 0 4px; }
+    input { width: 100%; padding: 9px 11px; border: 1px solid var(--line);
+            border-radius: 8px; background: transparent; color: inherit; font: inherit; }
+    button { padding: 9px 16px; border-radius: 8px; border: 0; background: var(--accent);
+             color: #fff; font: inherit; font-weight: 600; cursor: pointer; margin-top: 14px; }
+    button.secondary { background: transparent; color: var(--accent); border: 1px solid var(--line); }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    #status { margin-top: 14px; font-size: 13px; }
+    .ok { color: #1b6b33; } .err { color: #9a2b2b; }
+    @media (prefers-color-scheme: dark) { .ok { color: #8fd6a0; } .err { color: #f2a8a8; } }
+    hr { border: 0; border-top: 1px solid var(--line); margin: 26px 0; }
+  </style>
+</head>
+<body>
+  <h1>PhD Tracker</h1>
+  <p class="hint">Right-click any job advert and save it straight to your board.</p>
+
+  <button id="advanced-toggle" class="secondary" hidden>Advanced: use my own Firebase project</button>
+
+  <div id="firebase-section">
+  <h2>Firebase project</h2>
+  <p class="hint">
+    Both values are in <code>android/app/google-services.json</code>:
+    <code>project_info.project_id</code> and
+    <code>client[0].api_key[0].current_key</code>. The Web API key is not a
+    secret — your Firestore rules are what protect the data.
+  </p>
+  <label for="projectId">Project ID</label>
+  <input id="projectId" autocomplete="off" spellcheck="false" />
+  <label for="apiKey">Web API key</label>
+  <input id="apiKey" autocomplete="off" spellcheck="false" />
+  </div>
+
+  <h2>Sign in</h2>
+  <p class="hint">
+    Use the same email and password as the app, so entries land under the same
+    account. If the app is still on a guest login, open
+    Settings &rarr; Add email &amp; password there first — otherwise this
+    creates a separate, empty board.
+  </p>
+  <label for="email">Email</label>
+  <input id="email" type="email" autocomplete="username" />
+  <label for="password">Password</label>
+  <input id="password" type="password" autocomplete="current-password" />
+  <div class="row">
+    <button id="signin">Sign in</button>
+    <button id="signup" class="secondary">Create account</button>
+    <button id="signout" class="secondary">Sign out</button>
+  </div>
+
+  <h2>AI extraction</h2>
+  <label for="geminiKey">Gemini API key</label>
+  <input id="geminiKey" type="password" autocomplete="off" spellcheck="false" />
+  <label for="geminiModel">Model</label>
+  <input id="geminiModel" autocomplete="off" spellcheck="false" placeholder="gemini-3.5-flash" />
+  <div class="row">
+    <button id="save">Save settings</button>
+    <button id="models" class="secondary">List models my key can use</button>
+  </div>
+
+  <div id="status"></div>
+
+  <hr />
+  <p class="hint">
+    The password is never stored — signing in exchanges it for a refresh
+    token, which is what gets kept. The Gemini key is held in extension
+    storage in plain text, which is fine for personal use and not fine for
+    sharing this extension with anyone else.
+  </p>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

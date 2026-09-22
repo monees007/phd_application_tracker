@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "PhD Tracker — save advert",
+  "version": "1.0.0",
+  "description": "Right-click a job advert to extract it and save it straight into your PhD Tracker board.",
+
+  "permissions": [
+    "contextMenus",
+    "scripting",
+    "storage",
+    "notifications",
+    "activeTab"
+  ],
+
+  "//host_permissions": [
+    "Only the three APIs this talks to. Page access comes from activeTab,",
+    "granted per-click by the context menu, so the extension cannot read",
+    "pages you have not explicitly acted on."
+  ],
+  "host_permissions": [
+    "https://identitytoolkit.googleapis.com/*",
+    "https://securetoken.googleapis.com/*",
+    "https://firestore.googleapis.com/*",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+
+  "action": {
+    "default_title": "PhD Tracker settings"
+  }
+}
